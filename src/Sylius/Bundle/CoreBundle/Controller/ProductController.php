@@ -272,19 +272,24 @@ class ProductController extends ResourceController
         }
 
         /* @var $products ProductInterface[] */
-        $results = [];
+        $results  = [];
         $products = $this->container->get('sylius.repository.product')->createFilterPaginator($request->query->get('criteria'));
-        $helper = $this->container->get('sylius.templating.helper.currency');
+        $helper   = $this->container->get('sylius.templating.helper.currency');
+
         foreach ($products as $product) {
-            $results[] = [
-                'id' => $product->getMasterVariant()->getId(),
-                'name' => $product->getName(),
-                'image' => $product->getImage()->getPath(),
-                'price' => $helper->convertAndFormatAmount($product->getMasterVariant()->getPrice()),
-                'original_price' => $helper->convertAndFormatAmount($product->getMasterVariant()->getOriginalPrice()),
-                'raw_price' => $helper->convertAndFormatAmount($product->getMasterVariant()->getPrice(), null, true),
-                'desc' => $product->getShortDescription(),
-            ];
+            $variants = $product->hasVariants() ? $product->getVariants() : [$product->getMasterVariant()] ;
+
+            foreach ($variants as $variant) {
+                $results[] = array(
+                    'id'             => $variant->getId(),
+                    'name'           => (string) $variant,
+                    'image'          => $product->getImage()->getPath(),
+                    'price'          => $helper->convertAndFormatAmount($variant->getPrice()),
+                    'original_price' => $helper->convertAndFormatAmount($variant->getOriginalPrice()),
+                    'raw_price'      => $helper->convertAndFormatAmount($variant->getPrice(), null, true),
+                    'desc'           => $variant->getPresentation() ?: $product->getShortDescription(),
+                );
+            }
         }
 
         return new JsonResponse($results);

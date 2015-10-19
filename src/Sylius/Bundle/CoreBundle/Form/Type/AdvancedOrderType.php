@@ -23,7 +23,9 @@ class AdvancedOrderType extends OrderType
         parent::buildForm($builder, $options);
 
         $builder
-            ->add('currency', 'sylius_currency_choice')
+            ->add('customer', 'sylius_customer_choice')
+            ->add('channel', 'sylius_channel_choice')
+            ->add('currency', 'sylius_currency_code_choice')
             ->add('state', 'sylius_order_state_choice')
             ->add('product', 'hidden', [
                 'mapped' => false,

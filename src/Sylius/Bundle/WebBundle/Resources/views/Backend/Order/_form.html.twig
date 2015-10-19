@@ -9,6 +9,26 @@
 {{ form_errors(form) }}
 
 <div class="row">
+    <div class="col col-md-12">
+        <h4>{{ 'sylius.order.channel'|trans|title }}</h4>
+
+        {{ form_widget(form.channel) }}
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col col-md-12">
+        <h4>{{ 'sylius.order.customer'|trans|title }}</h4>
+
+        {{ form_widget(form.customer) }}
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
     <div class="col col-md-4">
         <h4>{{ 'sylius.order.billing_address'|trans|title }}</h4>
 

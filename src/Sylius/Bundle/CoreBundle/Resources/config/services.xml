@@ -250,6 +250,7 @@
         <service id="sylius.listener.order_pricing" class="%sylius.listener.order_pricing.class%">
             <argument type="service" id="sylius.price_calculator" />
             <tag name="kernel.event_listener" event="sylius.cart_change" method="recalculatePrices" />
+            <tag name="kernel.event_listener" event="sylius.order.pre_create" method="recalculatePrices" />
             <tag name="kernel.event_listener" event="sylius.checkout.finalize.initialize" method="recalculatePrices" />
             <tag name="kernel.event_listener" event="sylius.checkout.security.pre_complete" method="recalculatePrices" />
         </service>

@@ -221,15 +221,20 @@ class ProductController extends BaseProductController
         $results  = array();
         $products = $this->get('sylius.repository.product')->createFilterPaginator($request->query->get('criteria'));
         $helper   = $this->get('sylius.templating.helper.currency');
+
         foreach ($products as $product) {
-            $results[] = array(
-                'id'        => $product->getMasterVariant()->getId(),
-                'name'      => $product->getName(),
-                'image'     => $product->getImage()->getPath(),
-                'price'     => $helper->convertAndFormatAmount($product->getMasterVariant()->getPrice()),
-                'raw_price' => $helper->convertAndFormatAmount($product->getMasterVariant()->getPrice(), null, true),
-                'desc'      => $product->getShortDescription(),
-            );
+            $variants = $product->hasVariants() ? $product->getVariants() : [$product->getMasterVariant()] ;
+
+            foreach ($variants as $variant) {
+                $results[] = array(
+                    'id'        => $variant->getId(),
+                    'name'      => (string) $variant,
+                    'image'     => $product->getImage()->getPath(),
+                    'price'     => $helper->convertAndFormatAmount($variant->getPrice()),
+                    'raw_price' => $helper->convertAndFormatAmount($variant->getPrice(), null, true),
+                    'desc'      => $variant->getPresentation() ?: $product->getShortDescription(),
+                );
+            }
         }
 
         return new JsonResponse($results);

@@ -130,7 +130,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
         $string = $this->getProduct()->getName();
 
         if (!$this->getOptions()->isEmpty()) {
-            $string .= '(';
+            $string .= ' (';
 
             foreach ($this->getOptions() as $option) {
                 $string .= $option->getOption()->getName() . ': ' . $option->getValue() . ', ';

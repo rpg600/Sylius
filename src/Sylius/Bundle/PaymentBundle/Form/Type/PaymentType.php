@@ -31,6 +31,12 @@ class PaymentType extends AbstractResourceType
             ->add('method', 'sylius_payment_method_choice', [
                 'label' => 'sylius.form.payment.method',
             ])
+            ->add('order', 'sylius_order_choice', [
+                'label' => 'Order',
+            ])
+            ->add('currency', 'sylius_currency_code_choice', [
+                'label' => 'sylius.order.currency'
+            ])
             ->add('amount', 'sylius_money', [
                 'label' => 'sylius.form.payment.amount',
             ])

@@ -20,6 +20,7 @@ use Sylius\Bundle\OrderBundle\Form\Type\CommentType;
 use Sylius\Bundle\OrderBundle\Form\Type\OrderItemType;
 use Sylius\Bundle\OrderBundle\Form\Type\OrderType;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
+use Sylius\Bundle\ResourceBundle\Form\Type\ResourceChoiceType;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Sylius\Component\Order\Model\Adjustment;
 use Sylius\Component\Order\Model\AdjustmentInterface;
@@ -101,6 +102,7 @@ class Configuration implements ConfigurationInterface
                                             ->addDefaultsIfNotSet()
                                             ->children()
                                                 ->scalarNode('default')->defaultValue(OrderType::class)->cannotBeEmpty()->end()
+                                                ->scalarNode('choice')->defaultValue(ResourceChoiceType::class)->end()
                                             ->end()
                                         ->end()
                                     ->end()

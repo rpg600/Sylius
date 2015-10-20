@@ -101,6 +101,11 @@ class Order implements OrderInterface
         $this->createdAt = new \DateTime();
     }
 
+    public function __toString()
+    {
+        return (string) $this->id;
+    }
+
     /**
      * {@inheritdoc}
      */

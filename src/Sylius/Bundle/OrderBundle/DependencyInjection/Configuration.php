@@ -110,6 +110,7 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->children()
                                         ->scalarNode('default')->defaultValue('Sylius\Bundle\OrderBundle\Form\Type\OrderType')->end()
+                                        ->scalarNode('choice')->defaultValue('Sylius\Bundle\ResourceBundle\Form\Type\ResourceChoiceType')->end()
                                     ->end()
                                 ->end()
                             ->end()

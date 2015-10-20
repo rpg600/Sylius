@@ -48,12 +48,6 @@ class EntityHiddenType extends AbstractType
         $builder
             ->addViewTransformer($transformer)
             ->setAttribute('data_class', $options['data_class'])
-            ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) use ($transformer) {
-                $event->setData($transformer->transform($event->getData()));
-            })
-            ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($transformer) {
-                $event->setData($transformer->transform($event->getData()));
-            })
         ;
     }
 

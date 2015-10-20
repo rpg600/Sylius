@@ -41,8 +41,6 @@ class EntityHiddenTypeSpec extends ObjectBehavior
         )->willReturn($builder);
 
         $builder->setAttribute('data_class', 'data_class')->willReturn($builder);
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, Argument::type(\Closure::class))->willReturn($builder);
-        $builder->addEventListener(FormEvents::SUBMIT, Argument::type(\Closure::class))->willReturn($builder);
 
         $this->buildForm($builder, [
             'data_class' => 'data_class',

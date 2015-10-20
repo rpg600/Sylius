@@ -28,6 +28,12 @@ class PaymentType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('order', 'sylius_order_choice', array(
+                'label' => 'Order',
+            ))
+            ->add('currency', 'sylius_currency_code_choice', array(
+                'label' => 'sylius.order.currency'
+            ))
             ->add('method', 'sylius_payment_method_choice', array(
                 'label' => 'sylius.form.payment.method',
             ))

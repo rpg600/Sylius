@@ -1,6 +1,8 @@
 {% form_theme form 'SyliusWebBundle:Backend:forms.html.twig' %}
 
 <fieldset>
+    {{ form_row(form.order) }}
+    {{ form_row(form.currency) }}
     {{ form_row(form.amount, {'attr': {'class': 'input-lg'}}) }}
     {{ form_row(form.method) }}
     {{ form_row(form.state) }}

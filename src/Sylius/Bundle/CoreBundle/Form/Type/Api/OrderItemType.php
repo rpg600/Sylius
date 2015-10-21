@@ -30,7 +30,7 @@ class OrderItemType extends BaseOrderItemType
 
         $builder
             ->add('variant', 'entity_hidden', array(
-                'data_class' => 'Sylius\Component\Core\Model\ProductVariant'
+                'class' => 'Sylius\Component\Core\Model\ProductVariant'
             ))
         ;
     }

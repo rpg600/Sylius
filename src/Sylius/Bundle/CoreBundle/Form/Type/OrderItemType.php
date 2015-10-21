@@ -36,7 +36,7 @@ class OrderItemType extends BaseOrderItemType
                 $data = $event->getData();
                 if (isset($data['variant'])) {
                     $event->getForm()->add('variant', 'entity_hidden', array(
-                        'data_class' => $options['variant_data_class'],
+                        'class' => $options['variant_data_class'],
                     ));
                 }
             })

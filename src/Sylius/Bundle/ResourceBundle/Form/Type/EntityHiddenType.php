@@ -16,8 +16,6 @@ use Sylius\Bundle\ResourceBundle\Form\DataTransformer\ObjectToIdentifierTransfor
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\LogicException;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EntityHiddenType extends AbstractType
@@ -39,15 +37,15 @@ class EntityHiddenType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        if (!$options['data_class']) {
-            throw new LogicException('Option "data_class" must be set.');
+        if (!$options['class']) {
+            throw new LogicException('Option "class" must be set.');
         }
 
-        $transformer = new ObjectToIdentifierTransformer($this->manager->getRepository($options['data_class']), $options['identifier']);
+        $transformer = new ObjectToIdentifierTransformer($this->manager->getRepository($options['class']), $options['identifier']);
 
         $builder
             ->addViewTransformer($transformer)
-            ->setAttribute('data_class', $options['data_class'])
+            ->setAttribute('class', $options['class'])
         ;
     }
 
@@ -58,6 +56,7 @@ class EntityHiddenType extends AbstractType
     {
         $resolver->setDefaults(array(
             'identifier' => 'id',
+            'class' => null,
         ));
     }
 

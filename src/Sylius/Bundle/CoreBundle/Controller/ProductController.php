@@ -229,7 +229,7 @@ class ProductController extends BaseProductController
                 $results[] = array(
                     'id'        => $variant->getId(),
                     'name'      => (string) $variant,
-                    'image'     => $product->getImage()->getPath(),
+                    'image'     => $product->getImage() ? '/media/cache/sylius_small/' . $product->getImage()->getPath() : 'http://placehold.it/120x90',
                     'price'     => $helper->convertAndFormatAmount($variant->getPrice()),
                     'raw_price' => $helper->convertAndFormatAmount($variant->getPrice(), null, true),
                     'desc'      => $variant->getPresentation() ?: $product->getShortDescription(),

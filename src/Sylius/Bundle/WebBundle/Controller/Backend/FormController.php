@@ -47,7 +47,9 @@ class FormController extends Controller
     {
         $request = $this->get('request_stack')->getMasterRequest();
 
-        $form = $this->get('form.factory')->createNamed('criteria', $type, array_filter($request->query->get('criteria', array())));
+        $form = $this->get('form.factory')->createNamed('criteria', $type, null, ['method' => 'GET']);
+
+        $form->handleRequest($request);
 
         return $this->render($template, array(
             'form' => $form->createView()

@@ -115,6 +115,8 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      */
     protected $depth;
 
+    protected $accreditationTypeIri;
+
     /**
      * Override constructor to set on hand stock.
      */
@@ -491,5 +493,17 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     public function getShippingVolume()
     {
         return $this->depth * $this->height * $this->width;
+    }
+
+    public function getAccreditationTypeIri()
+    {
+        return $this->accreditationTypeIri;
+    }
+
+    public function setAccreditationTypeIri($accreditationTypeIri)
+    {
+        $this->accreditationTypeIri = $accreditationTypeIri;
+
+        return $this;
     }
 }

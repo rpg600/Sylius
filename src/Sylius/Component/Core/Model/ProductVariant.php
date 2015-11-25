@@ -93,6 +93,8 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      */
     protected $depth;
 
+    protected $accreditationTypeIri;
+
     /**
      * @var TaxCategoryInterface
      */
@@ -531,5 +533,17 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     public function setTaxCategory(TaxCategoryInterface $category = null)
     {
         $this->taxCategory = $category;
+    }
+
+    public function getAccreditationTypeIri()
+    {
+        return $this->accreditationTypeIri;
+    }
+
+    public function setAccreditationTypeIri($accreditationTypeIri)
+    {
+        $this->accreditationTypeIri = $accreditationTypeIri;
+
+        return $this;
     }
 }

@@ -39,6 +39,8 @@ class PromotionRepository extends BasePromotionRepository
             ->setParameter('channel', $channel)
         ;
 
+        $this->getEntityManager()->getFilters()->enable('softdeleteable');
+
         return $queryBuilder
             ->getQuery()
             ->getResult()

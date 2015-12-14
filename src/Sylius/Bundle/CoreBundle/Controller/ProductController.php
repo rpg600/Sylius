@@ -286,7 +286,7 @@ class ProductController extends ResourceController
                     'image'          => $product->getImage() ? '/media/cache/sylius_small/' . $product->getImage()->getPath() : 'http://placehold.it/120x90',
                     'price'          => $helper->convertAndFormatAmount($variant->getPrice()),
                     'original_price' => $helper->convertAndFormatAmount($variant->getOriginalPrice()),
-                    'raw_price'      => $helper->convertAndFormatAmount($variant->getPrice(), null, true),
+                    'raw_price'      => $variant->getPrice() / 100,
                     'desc'           => $variant->getPresentation() ?: $product->getShortDescription(),
                 );
             }

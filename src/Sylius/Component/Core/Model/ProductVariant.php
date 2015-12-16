@@ -117,6 +117,8 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
 
     protected $accreditationTypeIri;
 
+    protected $documentaryStockTypeIri;
+
     /**
      * Override constructor to set on hand stock.
      */
@@ -503,6 +505,18 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     public function setAccreditationTypeIri($accreditationTypeIri)
     {
         $this->accreditationTypeIri = $accreditationTypeIri;
+
+        return $this;
+    }
+
+    public function getDocumentaryStockTypeIri()
+    {
+        return $this->documentaryStockTypeIri;
+    }
+
+    public function setDocumentaryStockTypeIri($documentaryStockTypeIri)
+    {
+        $this->documentaryStockTypeIri = $documentaryStockTypeIri;
 
         return $this;
     }

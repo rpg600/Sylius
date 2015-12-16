@@ -56,6 +56,8 @@
 
         <field name="accreditationTypeIri" column="accreditation_type_iri" type="string" nullable="true" />
 
+        <field name="documentaryStockTypeIri" column="documentary_stock_type_iri" type="string" nullable="true" />
+
         <one-to-many field="images" target-entity="Sylius\Component\Core\Model\ProductVariantImageInterface" mapped-by="variant">
             <cascade>
                 <cascade-all />

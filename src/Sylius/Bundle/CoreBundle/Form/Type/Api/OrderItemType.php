@@ -32,7 +32,7 @@ class OrderItemType extends BaseOrderItemType
         $builder
             ->add('variant', 'entity_hidden', [
                 'class' => ProductVariant::class,
-            ))
+            ])
         ;
     }
 

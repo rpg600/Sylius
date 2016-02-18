@@ -57,7 +57,7 @@ class EntityHiddenType extends AbstractType
         $resolver->setDefaults([
             'identifier' => 'id',
             'class' => null,
-        ));
+        ]);
     }
 
     /**

@@ -48,8 +48,7 @@ class ContainsProductConfigurationType extends AbstractType
                     return $this->variantRepository->getFormQueryBuilder();
                 },
                 'constraints' => [
-                    new NotBlank(),
-                    new Type(['type' => 'numeric']),
+                    new NotBlank()
                 ],
             ])
             ->add('count', 'integer', [

@@ -188,7 +188,7 @@ class OrderRepository extends CartRepository implements OrderRepositoryInterface
     {
         $this->_em->getFilters()->disable('softdeleteable');
 
-        $queryBuilder = $this->getQueryBuilder();
+        $queryBuilder = $this->createQueryBuilder($this->getAlias());
         $queryBuilder
             ->select('count(o.id)')
             ->innerJoin('o.promotionCoupon', 'coupon')

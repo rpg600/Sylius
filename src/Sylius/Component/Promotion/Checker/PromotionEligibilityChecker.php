@@ -64,8 +64,20 @@ class PromotionEligibilityChecker implements PromotionEligibilityCheckerInterfac
 
         $eligible = true;
         $eligibleRules = false;
+        $haveProductRules = false;
+        $containsAtLeastOneProduct = false;
+
         if ($promotion->hasRules()) {
             foreach ($promotion->getRules() as $rule) {
+                if ($rule->getType() === 'contains_product') {
+                    $haveProductRules = true;
+                    if ($this->isEligibleToRule($subject, $promotion, $rule)) {
+                        $containsAtLeastOneProduct = true;
+                    }
+
+                    continue;
+                }
+
                 try {
                     if (!$this->isEligibleToRule($subject, $promotion, $rule)) {
                         return false;
@@ -79,6 +91,10 @@ class PromotionEligibilityChecker implements PromotionEligibilityCheckerInterfac
 
                     continue;
                 }
+            }
+
+            if ($haveProductRules && false === $containsAtLeastOneProduct) {
+                return false;
             }
         }
 

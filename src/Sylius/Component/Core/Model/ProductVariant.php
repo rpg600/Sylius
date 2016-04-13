@@ -126,7 +126,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
             $string = substr($string, 0, -2).')';
         }
 
-        return $string;
+        return $string . '';
     }
 
     /**

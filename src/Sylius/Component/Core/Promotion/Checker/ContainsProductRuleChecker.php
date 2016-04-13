@@ -34,7 +34,7 @@ class ContainsProductRuleChecker implements RuleCheckerInterface
 
         /* @var $item OrderItemInterface */
         foreach ($subject->getItems() as $item) {
-            if ($configuration['variant'] != $item->getVariant()->getId()) {
+            if ($configuration['variant']->getId() != $item->getVariant()->getId()) {
                 continue;
             }
 
@@ -80,9 +80,9 @@ class ContainsProductRuleChecker implements RuleCheckerInterface
     private function isItemQuantityEligible($quantity, array $configuration)
     {
         if (isset($configuration['equal']) && $configuration['equal']) {
-            return $quantity >= $configuration['count'];
+            return $quantity == $configuration['count'];
         }
 
-        return $quantity > $configuration['count'];
+        return $quantity >= $configuration['count'];
     }
 }

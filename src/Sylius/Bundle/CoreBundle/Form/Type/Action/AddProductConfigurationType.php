@@ -49,7 +49,7 @@ class AddProductConfigurationType extends AbstractType
                 },
                 'constraints' => [
                     new NotBlank(),
-                    new Type(['type' => 'numeric']),
+                    new Type(['type' => 'integer']),
                 ],
             ])
             ->add('quantity', 'integer', [

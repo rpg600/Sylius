@@ -294,6 +294,7 @@
             <tag name="kernel.event_listener" event="sylius.checkout.addressing.pre_complete" method="applyTaxes" />
             <tag name="kernel.event_listener" event="sylius.checkout.payment.pre_complete" method="applyTaxes" />
             <tag name="kernel.event_listener" event="sylius.checkout.finalize.initialize" method="applyTaxes" />
+            <tag name="kernel.event_listener" event="sylius.order.pre_update" method="applyTaxes" />
         </service>
         <service id="sylius.listener.order_shipping" class="%sylius.listener.order_shipping.class%">
             <argument type="service" id="sylius.order_processing.shipment_factory" />

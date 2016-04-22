@@ -20,9 +20,6 @@
         <constraint name="Sylius\Bundle\AddressingBundle\Validator\Constraints\ShippableAddressConstraint">
             <option name="groups">shippable</option>
         </constraint>
-        <constraint name="Sylius\Bundle\AddressingBundle\Validator\Constraints\ProvinceAddressConstraint">
-            <option name="groups">sylius</option>
-        </constraint>
         <property name="firstName">
             <constraint name="NotBlank">
                 <option name="message">sylius.address.first_name.not_blank</option>

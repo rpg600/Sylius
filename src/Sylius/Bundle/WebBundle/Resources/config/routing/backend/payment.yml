@@ -51,7 +51,7 @@ sylius_backend_payment_history:
             template: SyliusWebBundle:Backend/Payment:history.html.twig
 
 sylius_backend_payment_update_state:
-    path: /update-state/{id}/{transition}
+    path: /update-state/{id}/{transition}/{graph}
     methods: [PUT]
     defaults:
         _controller: sylius.controller.payment:updateStateAction

@@ -275,6 +275,7 @@ class ProductController extends ResourceController
         $results  = [];
         $products = $this->container->get('sylius.repository.product')->createFilterPaginator($request->query->get('criteria'));
         $helper   = $this->container->get('sylius.templating.helper.currency');
+        $products->setMaxPerPage(10000);
 
         foreach ($products as $product) {
             $variants = $product->hasVariants() ? $product->getVariants() : [$product->getMasterVariant()] ;

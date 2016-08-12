@@ -70,7 +70,11 @@ class CurrencyContext extends BaseCurrencyContext
             return $customer->getCurrency();
         }
 
-        $channel = $this->channelContext->getChannel();
+        try {
+            $channel = $this->channelContext->getChannel();
+        } catch (\Sylius\Component\Channel\Context\ChannelNotFoundException $e) {
+            return $this->defaultCurrency;
+        }
 
         return $this->storage->getData($this->getStorageKey($channel->getCode()), $this->defaultCurrency);
     }

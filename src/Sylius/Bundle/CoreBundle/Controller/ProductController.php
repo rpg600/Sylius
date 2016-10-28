@@ -20,6 +20,7 @@ use Sylius\Bundle\SearchBundle\Query\TaxonQuery;
 use Sylius\Component\Archetype\Model\ArchetypeInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
+use Sylius\Component\Resource\ResourceActions;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -294,6 +295,32 @@ class ProductController extends ResourceController
         }
 
         return new JsonResponse($results);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function restoreAction(Request $request)
+    {
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
+
+        $this->isGrantedOr403($configuration, ResourceActions::DELETE); // Who can delete can also restore
+
+        $this->manager->getFilters()->disable('softdeleteable');
+        $resource = $this->findOr404($configuration);
+
+        $resource->setDeletedAt(null);
+        $this->manager->flush();
+
+        if (!$configuration->isHtmlRequest()) {
+            return $this->viewHandler->handle($configuration, View::create($resource, 204));
+        }
+
+        $this->flashHelper->addSuccessFlash($configuration, 'restore_deleted', $resource);
+
+        return $this->redirectHandler->redirectToResource($configuration, $resource);
     }
 
     /**
